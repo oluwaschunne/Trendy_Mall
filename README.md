@@ -1,4 +1,4 @@
-# A Joint Collaboration work between *Falope Oluwaseun* and *Osundaro Temiloluwa*
+# A Joint Collaboration work between Falope Oluwaseun and Osundaro Temiloluwa
 
 # Trendy-Mall
 An e-commmerce store for your fashionable wears!.
@@ -9,3 +9,4 @@ The project aims to creat an online platform for selling of wears. Users can bro
 # Features
 - User registration and authentication
 - Product browsing and searching
+- Product detals page
