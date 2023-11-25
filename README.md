@@ -10,3 +10,13 @@ The project aims to creat an online platform for selling of wears. Users can bro
 - User registration and authentication
 - Product browsing and searching
 - Product detals page
+- Shoppoing cart functionality
+- Checkout process
+- Order management
+- Payment integration
+- Admin panel for managing products, orders, and users.
+
+# Techmnologies Used
+- Front-end: HTML, CSS, JavaScript
+- Back-end: Node.js, Express.js
+- Database: MongoDB
