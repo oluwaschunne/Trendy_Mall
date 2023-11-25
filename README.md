@@ -1,5 +1,3 @@
-# A Joint Collaboration work between Falope Oluwaseun and Osundaro Temiloluwa
-
 # Trendy-Mall
 An e-commmerce store for your fashionable wears!.
 
@@ -20,3 +18,6 @@ The project aims to creat an online platform for selling of wears. Users can bro
 - Front-end: HTML, CSS, JavaScript
 - Back-end: Node.js, Express.js
 - Database: MongoDB
+
+# Authors
+- Falope Oluwaseun <oluwaschunne> and Osundaro Temiloluwa <Temiloluwa22>
