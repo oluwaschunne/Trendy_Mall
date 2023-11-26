@@ -20,4 +20,5 @@ The project aims to creat an online platform for selling of wears. Users can bro
 - Database: MongoDB
 
 # Authors
-- Falope Oluwaseun <oluwaschunne> and Osundaro Temiloluwa <Temiloluwa22>
+- Falope Oluwaseun <falopeoluwaseun2@gmail.com> 
+- Osundaro Temiloluwa <Temiloluwa22>
