@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TrendyMall</title>
+        <link rel="shortcut icon" href="" type="image/x-icon" />
+        <!-- Favicons -->
+        <link href="Images/tm.jpg" rel ="icon"/>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        />
+        <style>
+            body .productGrid {
+                font-family: Arial, sans-serif;
+                margin: 10px;
+                padding-left: 10%;
+                margin-right: 10%;
+                /* background-color: #f4f4f4;*/
+            }
+
+            header {
+                background-color: #333;
+                color: white;
+                padding: 1em;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                margin-right: 1em; /* Add margin to the right */
+            }
+            div .product {
+                padding-left: 16px;
+            }
+            .search-bar {
+                display: flex;
+                align-items: center;
+                margin-left: auto; /* Move search bar to the right */
+            }
+
+            .logo {
+                max-width: 100px;
+                height: auto;
+            }
+
+            .hamburger-icon {
+                font-size: 1.5em;
+                cursor: pointer;
+                margin-left: 1em;
+                color: white;
+            }
+
+            nav {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+            }
+
+            .button {
+                color: black;
+                padding: 0.5em;
+            }
+
+            nav a,
+            .search-bar button,
+            .footer-links a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5em;
+                text-align: right;
+            }
+
+            .search-input {
+                margin-right: 1em;
+                text-align: center; /* Center text in the search input */
+            }
+
+            main {
+                padding: 1em;
+            }
+
+            footer {
+                background-color: #333;
+                color: white;
+                padding: 1em;
+                text-align: center;
+            }
+
+            footer nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            footer section {
+                flex: 1;
+                margin-right: 1em;
+            }
+
+            footer input {
+                margin-top: 0.5em;
+                width: 100%;
+                text-align: center; /* Center text in the footer input */
+            }
+
+            @media screen and (max-width: 900px) {
+                nav {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                width: 100%;
+                z-index: 1;
+                }
+
+                nav a {
+                text-align: center;
+                }
+            }
+
+            .side-panel {
+                width: 0;
+                overflow: hidden;
+                transition: 0.5s;
+                background-color: #333;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                height: calc(100% - 60px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 60px;
+                z-index: 1;
+            }
+
+            .side-panel a {
+                padding: 1em;
+                text-align: center;
+                text-decoration: none;
+                color: white;
+                font-size: 1.2em;
+                transition: 0.3s;
+            }
+
+            .side-panel a:hover {
+                color: #f4f4f4;
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 3em;
+                cursor: pointer;
+            }
+
+            .productGrid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 2rem;
+                justify-content: center;
+                padding: 1em;
+                background-color: #fff; /* Set your desired background color */
+            }
+
+            .product {
+                border: 1px solid #ddd;
+                padding: 1em;
+                text-align: center;
+                background-color: #f4f4f4;
+            }
+
+            .product img {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 0.5em;
+            }
+
+            .product h3 {
+                font-size: 1.2em;
+                margin-bottom: 0.5em;
+            }
+
+            .product p {
+                color: #333;
+                margin-bottom: 0.5em;
+            }
+
+            .product button {
+                background-color: #333;
+                color: white;
+                padding: 0.5em 1em;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: rgb(25, 213, 25);
+            }
+            /* a:hover {
+                color: orange;
+            }
+            a .dropdown-content :hover {
+                color: orange;
+            }
+        */
+            .product button:hover {
+                background-color: #555;
+            }
+
+            footer .social-icons {
+                display: flex;
+                gap: 15px;
+                font-size: 25px;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            .side-panel a:hover {
+                color: gold;
+            }
+
+            footer .social-icons i {
+                color: white;
+                transition: color 0.3s;
+            }
+
+            footer .social-icons i:hover {
+                color: #f4f4f4;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #333;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                color: white;
+            }
+            .dropdown-content a:hover {
+                color: orange;
+            }
+            .alpha li a:hover {
+                color: gold;
+            }
+            .alpha li a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                padding-left: 10px;
+                font: bold;
+            }
+            section #subscription button {
+                border: none;
+            }
+            .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .search-input button {
+                color: black;
+            }
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo-container">
+                <div class="hamburger-icon" onclick="toggleSidePanel()">&#9776;</div>
+                <img src="ach zie/images/logo.png" alt="TrendyMall Logo" class="logo" />
+                <span style="margin-left: 0.5em; font-size: 30px"
+                ><b>Trendy</b><span style="color: gold"><b>Mall</b></span></span
+                >
+            </div>
+            <div class="search-bar">
+                <div class="search-input">
+                <input
+                    type="text"
+                    placeholder="Search products..."
+                    style="color: black"
+                />
+                <!-- Set text color to black -->
+                <button type="submit">Search</button>
+                </div>
+                <nav>
+                <div class="dropdown">
+                    <a href="#" class="help-btn">Help &#9660;</a>
+                    <div class="dropdown-content">
+                    <a href="contact">Contact Us</a>
+                    <a href="order">Place an Order</a>
+                    <a href="track">Track an Order</a>
+                    <a href="cancel">Cancel an Order</a>
+                    <a href="payment">Payment Options</a>
+                    <a href="faq">FAQs</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="account-btn">Account &#9660;</a>
+                    <div class="dropdown-content">
+                    <a href="#">Login/Sign Up</a>
+                    <a href="#">My Account</a>
+                    <a href="#">Orders</a>
+                    <a href="#">Saved Items</a>
+                    </div>
+                </div>
+                <a href="#" class="cart-btn">Cart</a>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div id="sidePanel" class="side-panel">
+                <a href="#" class="close-btn" id="closeBtn">&times;</a>
+                <a href="#Joggers">Joggers</a>
+                <a href="#Trousers">Trousers</a>
+                <a href="#Polos">Polos</a>
+                <a href="#Shirts">T-Shirts</a>
+                <a href="#Jackets">Jackets</a>
+                <a href="#Skirts">Skirts</a>
+                <a href="#Shoes">Shoes</a>
+            </div>
+            <!-- Product Display -->
+            <div
+                id="Jackets"
+                class="productGrid"
+                style="padding-left: 16px; margin-left: 75px"
+            >
+                <div class="product">
+                <img src="Images/Jackets/jacket1.jpg" alt="Jacket" />
+                <h3>Ralph Jacket</h3>
+                <p>$19.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Jackets/jacket2.jpg" alt="Jacket" />
+                <h3>Varsity Jacket</h3>
+                <p>$24.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Jackets/jacket3.jpg" alt="Jacket" />
+                <h3>Bulgano</h3>
+                <p>$36.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Jackets/jacket4.jpg" alt="Jacket" />
+                <h3>Letherthick</h3>
+                <p>$39.99</p>
+                <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div
+                id="Joggers"
+                class="productGrid"
+                style="padding-left: 16px; margin-left: 75px"
+            >
+                <div class="product">
+                <img src="Images/joggers/jog1.jpg" alt="Jogger" />
+                <h3>Fashionista Unisex Jogger</h3>
+                <p>$29.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/joggers/jog2.jpg" alt="Jogger" />
+                <h3>Joggers - Addidas stripped</h3>
+                <p>$34.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/joggers/jog3.jpg" alt="Jogger" />
+                <h3>Fashion House Joggers - Ash</h3>
+                <p>$25.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/joggers/jog4.jpg" alt="Jogger" />
+                <h3>Fashion House Joggers Up and Down</h3>
+                <p>$39.99</p>
+                <button>Add to Cart</button>
+                </div>
+            </div>
+            <div
+                id="Polos"
+                class="productGrid"
+                style="padding-left: 16px; margin-left: 75px"
+            >
+                <div class="product">
+                <img src="Images/Polos/polo1.jpg" alt="Polo" />
+                <h3>Collar Neck Polos - Green</h3>
+                <p>$12.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Polos/polo2.jpg" alt="Polo" />
+                <h3>Ralph Collar Neck Polos</h3>
+                <p>$16.99</p>
+                <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                <img src="Images/Polos/polo3.jpg" alt="Polo" />
+                <h3>Collar Neck polos - Mixed Color</h3>
+                <p>$19.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Polos/polo4.jpg" alt="Polo" />
+                <h3>3 in 1 Collar Neck Polos</h3>
+                <p>$25.99</p>
+                <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div
+                id="Shoes"
+                class="productGrid"
+                style="padding-left: 16px; margin-left: 75px"
+            >
+                <div class="product">
+                <img src="Images/Shoes/shoe1.jpg" alt="Shoe" />
+                <h3>Heeled Sandle</h3>
+                <p>$29.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Shoes/shoe2.jpg" alt="Shoe" />
+                <h3>Heeled Shoe - White</h3>
+                <p>$32.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Shoes/shoe3.jpg" alt="Shoe" />
+                <h3>ABCDUCK PL-600</h3>
+                <p>$38.99</p>
+                <button>Add to Cart</button>
+                </div>
+
+                <div class="product">
+                <img src="Images/Shoes/shoe4.jpg" alt="Shoe" />
+                <h3>Men Shoes</h3>
+                <p>$33.99</p>
+                <button>Add to Cart</button>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <section id="Information">
+                <div class="alpha">
+                <ul style="list-style: none; padding: 0; display: flex">
+                    <li style="margin-right: 1em"><a href="about">About Us</a></li>
+                    <li style="margin-right: 1em">
+                    <a href="contact">Contact Us</a>
+                    </li>
+                    <li><a href="terms">Terms and Conditions</a></li>
+                </ul>
+                </div>
+            </section>
+
+            <section id="Subscription" style="flex: 1">
+                <p><b>New to TrendyMall?</b></p>
+                <p>Subscribe to our <span style="color: gold"> newsletter</span></p>
+
+                <input
+                type="text"
+                placeholder="Email Address"
+                style="width: 20%; height: 3vh; border-radius: 0.5rem; outline: none"
+                />
+                <button type="submit" style="border: none; cursor: pointer">
+                Subscribe
+                </button>
+            </section>
+
+            <section id="FollowUs">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-github"></i>
+                </div>
+            </section>
+        </footer>
+        <script>
+            document
+                .querySelector(".hamburger-icon")
+                .addEventListener("click", function () {
+                const sidePanel = document.getElementById("sidePanel");
+                sidePanel.style.width =
+                    sidePanel.style.width === "250px" ? "9" : "250px";
+                });
+
+            document
+                .querySelector(".help-btn")
+                .addEventListener("click", function (e) {
+                e.preventDefault();
+                toggleDropdown("help");
+                });
+
+            document
+                .querySelector(".account-btn")
+                .addEventListener("click", function (e) {
+                e.preventDefault();
+                toggleDropdown("account");
+                });
+
+            document
+                .querySelector(".cart-btn")
+                .addEventListener("click", function (e) {
+                e.preventDefault();
+                toggleDropdown("cart");
+                });
+
+            function toggleDropdown(dropdown) {
+                const dropdownContent = document.querySelector(`.${dropdown}-content`);
+                dropdownContent.style.display === "block" ? "none" : "block";
+            }
+            const sidePanel = document.getElementById("sidePanel");
+
+            closeBtn.addEventListener("click", function () {
+                sidePanel.style.width = "0" ? "0" : "0";
+            });
+        </script>
+    </body>
+</html>
