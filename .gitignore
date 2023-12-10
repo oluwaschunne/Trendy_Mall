@@ -1,0 +1,6 @@
+# .gitignore
+
+# Ignore virtual environment
+myenv/
+
+# Other rules...
