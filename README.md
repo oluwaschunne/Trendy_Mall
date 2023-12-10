@@ -21,4 +21,4 @@ The project aims to creat an online platform for selling of wears. Users can bro
 
 # Authors
 - Falope Oluwaseun <falopeoluwaseun2@gmail.com> 
-- Osundaro Temiloluwa <Temiloluwa22>
+- Osundaro Temiloluwa <osuntemiloluwa@gmail.com>
