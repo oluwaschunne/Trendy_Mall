@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendyMall</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"
+        />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 10px;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+
+            header {
+                background-color: #333;
+                color: white;
+                padding: 1em;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                margin-right: 1em; /* Add margin to the right */
+            }
+
+            .search-bar {
+                display: flex;
+                align-items: center;
+                margin-left: auto; /* Move search bar to the right */
+            }
+
+            .logo {
+                max-width: 100px;
+                height: auto;
+            }
+
+            .hamburger-icon {
+                font-size: 1.5em;
+                cursor: pointer;
+                margin-left: 1em;
+                color: white;
+            }
+
+            nav {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+            }
+
+            .button {
+                color:black;
+                padding: 0.5em;
+            }
+
+            nav a,
+            .search-bar button,
+            .footer-links a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5em;
+                text-align: right;
+            }
+
+            .search-input {
+                margin-right: 1em;
+                text-align: center; /* Center text in the search input */
+            }
+
+            main {
+                padding: 1em;
+            }
+
+            footer {
+                background-color: #333;
+                color: white;
+                padding: 1em;
+                text-align: center;
+            }
+
+            footer nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            footer section {
+                flex: 1;
+                margin-right: 1em;
+            }
+
+            footer input {
+                margin-top: 0.5em;
+                width: 100%;
+                text-align: center; /* Center text in the footer input */
+            }
+
+            @media screen and (max-width: 600px) {
+                nav {
+                    display: none;
+                    flex-direction: column;
+                    background-color: #333;
+                    position: absolute;
+                    top: 60px;
+                    width: 100%;
+                    z-index: 1;
+                }
+
+                nav a {
+                    text-align: center;
+                }
+            }
+
+            .side-panel {
+                width: 0;
+                overflow: hidden;
+                transition: 0.5s;
+                background-color: #333;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                height: calc(100% - 60px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 60px;
+                z-index: 1;
+            }
+
+            .side-panel a {
+                padding: 1em;
+                text-align: center;
+                text-decoration: none;
+                color: white;
+                font-size: 1.2em;
+                transition: 0.3s;
+            }
+
+            .side-panel a:hover {
+                color: #f4f4f4;
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 2em;
+                cursor: pointer;
+            }
+            
+            .productGrid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1em;
+                justify-content: center;
+                padding: 1em;
+                background-color: #fff; /* Set your desired background color */
+            }
+
+            .product {
+                border: 1px solid #ddd;
+                padding: 1em;
+                text-align: center;
+            }
+
+            .product img {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 0.5em;
+            }
+
+            .product h3 {
+                font-size: 1.2em;
+                margin-bottom: 0.5em;
+            }
+
+            .product p {
+                color: #333;
+                margin-bottom: 0.5em;
+            }
+
+            .product button {
+                background-color: #333;
+                color: white;
+                padding: 0.5em 1em;
+                border: none;
+                cursor: pointer;
+            }
+
+            .product button:hover {
+                background-color: #555;
+            }
+
+            footer .social-icons {
+                display: flex;
+                gap: 15px;
+                font-size: 25px;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            footer .social-icons i {
+                color: white;
+                transition: color 0.3s;
+            }
+
+            footer .social-icons i:hover {
+                color: #f4f4f4;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #333;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                color: white;
+            }
+
+            .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+
+            .product-details {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                margin: 2em 0;
+            }
+
+            .product-image {
+                max-width: 50%;
+                margin-right: 2em;
+            }
+
+            .product-image img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .product-info {
+                max-width: 50%;
+            }
+             button:hover{
+                background-color: rgb(25, 213, 25);
+            }
+        </style>
+    
+    </head>
+    <body>
+        <header>
+            <div class="logo-container">
+                <div class="hamburger-icon" onclick="toggleSidePanel()">&#9776;</div>
+                <img src="ach zie/images/logo.png" alt="TrendyMall Logo" class="logo">
+                <span style="margin-left: 0.5em;">TrendyMall</span>
+            </div>
+            <div class="search-bar">
+                <div class="search-input">
+                    <input type="text" placeholder="Search products..." style="color: black;"> <!-- Set text color to black -->
+                    <button type="submit">Search</button>
+                </div>
+                <nav>
+                    <div class="dropdown">
+                        <a href="#" class="help-btn">Help &#9660;</a>
+                        <div class="dropdown-content">
+                            <a href="#">Contact Us</a>
+                            <a href="#">Place an Order</a>
+                            <a href="#">Track an Order</a>
+                            <a href="#">Cancel an Order</a>
+                            <a href="#">Payment Options</a>
+                            <a href="#">FAQs</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" class="account-btn">Account &#9660;</a>
+                        <div class="dropdown-content">
+                            <a href="#">Login/Sign Up</a>
+                            <a href="#">My Account</a>
+                            <a href="#">Orders</a>
+                            <a href="#">Saved Items</a>
+                        </div>
+                    </div>
+                    <a href="#" class="cart-btn">Cart</a>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div id="sidePanel" class="side-panel">
+                <a href="#" class="close-btn" onclick="closeSidePanel()">&times;</a>
+                <a href="#Joggers">Joggers</a>
+                <a href="#Trousers">Trousers</a>
+                <a href="#Polos">Polos</a>
+                <a href="#Shirts">T-Shirts</a>
+                <a href="#Jackets">Jackets</a>
+                <a href="#Skirts">Skirts</a>
+                <a href="#Shoes">Shoes</a>
+            </div>
+            <section id="jacket1" class="product-details">
+                <div class="product-image">
+                    <img src="../../static/root/Images/Jackets/jacket1.jpg" alt="Jacket">
+                </div>
+                <div class="product-info">
+                    <h1>Ralph Jacket</h1>
+                    <p class="price">$19.99</p>
+                    <p class="description">"High-quality jacket with stylish design."<br>
+                        Available color includes: White, Black and Grey
+                    </p>
+                    <div style="padding-bottom: 20px;">
+                        <label for="quantity">Quantity:</label>
+                        <button onclick="decreaseQuantity()">-</button>
+                        <input type="text" id="quantity" value="1" readonly>
+                        <button onclick="increaseQuantity()">+</button>
+                    </div>
+        
+                    <!-- You can also include an "Add to Cart" button if needed -->
+                    <button onclick="addToCart()">Add to Cart</button>
+                </div>
+            </section>
+            <section id="jacket2" class="product-details">
+                <div class="product-image">
+                    <img src="../../static/root/Images/Jackets/jacket2.jpg" alt="Jacket">
+                </div>
+                <div class="product-info">
+                    <h1>Varsity Jacket</h1>
+                    <p class="price">$24.99</p>
+                    <p class="description">"High-quality jacket with stylish design."<br>
+                        Available color includes: White, Black and Grey
+                    </p>
+                    <div style="padding-bottom: 20px;">
+                        <label for="quantity">Quantity:</label>
+                        <button onclick="decreaseQuantity()">-</button>
+                        <input type="text" id="quantity" value="1" readonly>
+                        <button onclick="increaseQuantity()">+</button>
+                    </div>
+        
+                    <!-- You can also include an "Add to Cart" button if needed -->
+                    <button onclick="addToCart()">Add to Cart</button>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <footer>
+            <nav>
+                <section id="Information">
+                    <ul style="list-style: none; padding: 0; display: flex;">
+                        <li style="margin-right: 1em;"><a href="#">About Us</a></li>
+                        <li style="margin-right: 1em;"><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                    </ul>
+                </section>
+
+                <section id="Subscription" style="flex: 1; ">
+                    <p><b>New to TrendyMall?</b></p>
+                    
+                    <p>Subscribe to our <span style="color: gold;">newsletter</span> </p> 
+                    <input type="text" placeholder="Email Address"  style="width: 50%; height: 3vh; border-radius: 0.5rem; "/>
+                    <button type="submit" >Subscribe</button>
+                </section>
+
+                <section id="FollowUs">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-youtube"></i>
+                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-github"></i>
+                    </div>
+                </section>
+            </nav>
+        </footer>
+        <script>
+            // JavaScript code to dynamically load product details based on the selected product
+            document.addEventListener("DOMContentLoaded", function() {
+                // Get the product ID from the URL query parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const productID = urlParams.get('productID');
+    
+                // Fetch product details based on the product ID
+                fetchProductDetails(productID);
+            });
+    
+            function fetchProductDetails(productID) {
+                // You can implement this function to fetch product details from a server or use a local data source
+                // For simplicity, let's use a sample data object
+                const sampleProductData = {
+                    jacket1: {
+                        name: "Ralph Jacket",
+                        price: "$19.99",
+                        description: "High-quality jacket with stylish design.",
+                        // Add more details as needed
+                    },
+                    // Add details for other products
+                };
+    
+                // Check if the product ID exists in the sample data
+                if (sampleProductData.hasOwnProperty(productID)) {
+                    // Load product details into the productDetails section
+                    displayProductDetails(sampleProductData[productID]);
+                } else {
+                    // Handle the case when the product ID is not found
+                    document.getElementById('productDetails').innerHTML = 'Product not found';
+                }
+            }
+    
+            // Add this function to handle the dynamic loading of product details
+            function loadProductDetails(productID) {
+                fetchProductDetails(productID);
+            }
+    
+            // Add this function to display the product details dynamically
+            function displayProductDetails(productDetails) {
+                const productDetailsSection = document.getElementById('productDetails');
+                productDetailsSection.innerHTML = `
+                    <div class="product-image">
+                        <img src="Images/Jackets/jacket1.jpg" alt="${productDetails.name}">
+                    </div>
+                    <div class="product-info">
+                        <h1>${productDetails.name}</h1>
+                        <p class="price">${productDetails.price}</p>
+                        <p class="description">${productDetails.description}</p>
+                        <!-- Add more details as needed -->
+                        <button>Add to Cart</button>
+                    </div>
+                `;
+            }
+    
+            // Call the loadProductDetails function when the page loads
+            document.addEventListener("DOMContentLoaded", function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const productID = urlParams.get('productID');
+                loadProductDetails(productID);
+            });
+
+            let quantity = 1;
+
+            function increaseQuantity() {
+                quantity++;
+                document.getElementById('quantity').value = quantity;
+            }
+
+            function decreaseQuantity() {
+                if (quantity > 1) {
+                    quantity--;
+                    document.getElementById('quantity').value = quantity;
+                }
+            }
+
+            function addToCart() {
+                // You can implement the functionality to add the product to the cart with the selected quantity
+                // For now, let's just display an alert with the selected quantity
+                alert(`Added ${quantity} ${quantity > 1 ? 'items' : 'item'} to the cart.`);
+            }
+        </script>
+    </body>
+</html>
